@@ -32,7 +32,7 @@ gem "rspec-rails", :group => [:test, :development]
 
 group :development do
   gem 'capistrano','2.14.2'
-  gem 'capistrano-ext','1.2.1'
+  gem 'capistrano-ext'
 end
 
 group :test do
