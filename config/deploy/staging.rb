@@ -73,6 +73,7 @@ namespace :deploy do
     run "cp #{deploy_to}/shared/database.yml #{release_path}/config/database.yml"
     run "cp #{deploy_to}/shared/delivery_cross_ref.yml #{release_path}/config/delivery_cross_ref.yml"
     run "cp #{deploy_to}/shared/application.yml #{release_path}/config/application.yml"
+    run "cp #{deploy_to}/shared/base_resource.rb #{release_path}/app/models/base_resource.rb"
   end
 
   task :restart, :roles => :app, :except => { :no_release => true } do
