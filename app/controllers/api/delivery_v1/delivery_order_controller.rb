@@ -17,10 +17,17 @@ class  Api::DeliveryV1::DeliveryOrderController < ApplicationController
   def pickup
     member_order = DeliveryCrossReference.pickup(params[:membership_no],params[:book_number],
                     "delivery_app_#{@current_user.name}",params[:branch_id],params[:pickup_order_id]).attributes
+    if member_order["errors"].present?
+      success = false
+      errors = member_order["errors"].attributes
+    else
+      success = true
+      errors = {}
+    end
     render :status => 200,
-           :json => { :success => member_order["success"],
-                      :book_number => member_order["book_number"],
-                      :errors => member_order["errors"].attributes }
+           :json => { :success => success,
+                      :book_number => member_order["book_id"],
+                      :errors => errors}
   end
 
   def issue
